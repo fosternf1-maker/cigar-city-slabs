@@ -19,12 +19,12 @@ export default function ShopPage() {
       <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="label-90s mb-2">Inventory</p>
-          <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h1 className="display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
             Shop
           </h1>
-          <p className="mt-3 max-w-lg text-zinc-400">
-            Scroll the grid, tap a card for a closer look. All purchases currently
-            go through our eBay store.
+          <p className="mt-3 max-w-lg text-ink-soft">
+            Scroll the grid, tap a card for a closer look. All purchases currently go through
+            our eBay store.
           </p>
         </div>
         <a
@@ -38,15 +38,14 @@ export default function ShopPage() {
         </a>
       </div>
 
-      {/* Filter chips – visual only for now */}
       <div className="mb-12 flex flex-wrap gap-2">
         {["All", "Grails", "Slabs", "Singles", "Sealed"].map((label) => (
           <span
             key={label}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition ${
+            className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
               label === "All"
-                ? "border border-[var(--neon-cyan)]/30 bg-[var(--neon-cyan)]/15 text-[var(--neon-cyan)]"
-                : "border border-white/5 bg-white/[0.03] text-zinc-400"
+                ? "bg-teal text-white"
+                : "border border-[var(--border)] bg-slab text-ink-soft"
             }`}
           >
             {label}
@@ -89,13 +88,11 @@ export default function ShopPage() {
         )}
       </div>
 
-      <div className="mt-20 rounded-2xl border border-white/[0.06] bg-[var(--card-bg)] p-8 text-center">
-        <p className="text-zinc-300">
-          Looking for something specific or want to sell / trade?
-        </p>
+      <div className="surface mt-20 p-8 text-center">
+        <p className="text-ink">Looking for something specific or want to sell / trade?</p>
         <a
           href={`mailto:${siteConfig.email}`}
-          className="mt-3 inline-block text-sm font-medium text-[var(--neon-cyan)] transition hover:underline"
+          className="mt-3 inline-block text-sm font-semibold text-teal transition hover:underline"
         >
           {siteConfig.email}
         </a>

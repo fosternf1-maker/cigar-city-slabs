@@ -9,41 +9,33 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/[0.06]">
-        {/* Layered neon atmosphere */}
+      <section className="relative overflow-hidden border-b border-[var(--border)]">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-40 -top-20 h-[420px] w-[420px] rounded-full bg-[var(--neon-cyan)]/[0.09] blur-[120px]" />
-          <div className="absolute -right-32 top-1/3 h-[360px] w-[360px] rounded-full bg-[var(--neon-magenta)]/[0.07] blur-[110px]" />
-          <div className="absolute bottom-0 left-1/2 h-48 w-[600px] -translate-x-1/2 rounded-full bg-[var(--neon-cyan)]/[0.04] blur-[80px]" />
-          {/* Soft geometric accent */}
-          <div className="absolute right-8 top-16 hidden h-32 w-32 rotate-12 rounded-2xl border border-[var(--neon-cyan)]/10 sm:block" />
-          <div className="absolute right-20 top-28 hidden h-20 w-20 -rotate-6 rounded-xl border border-[var(--neon-magenta)]/15 sm:block" />
+          <div className="absolute -left-40 -top-20 h-[420px] w-[420px] rounded-full bg-teal/[0.14] blur-[120px]" />
+          <div className="absolute -right-32 top-1/3 h-[360px] w-[360px] rounded-full bg-purple/[0.1] blur-[110px]" />
+          <div className="absolute bottom-0 left-1/2 h-48 w-[600px] -translate-x-1/2 rounded-full bg-gold/[0.1] blur-[80px]" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-zinc-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--neon-cyan)] shadow-[0_0_8px_var(--neon-cyan)]" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-slab/80 px-3 py-1.5 text-xs font-semibold text-ink-soft shadow-sm backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
             Tampa, FL · Est. Cigar City
           </div>
 
-          <h1 className="mt-6 max-w-3xl font-[family-name:var(--font-display)] text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="display mt-6 max-w-3xl text-6xl font-extrabold leading-[0.92] tracking-tight text-ink sm:text-7xl lg:text-8xl">
             Cigar City{" "}
-            <span className="text-[var(--neon-cyan)] neon-text">Slabs</span>
+            <span className="text-teal">Slabs</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">
             Buy. Trade. Resell.{" "}
-            <span className="text-zinc-200">
+            <span className="text-ink">
               Trading cards in a fun environment — anchored in Tampa.
             </span>
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              href="/shop"
-              className="btn-primary inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-            >
+            <Link href="/shop" className="btn-primary inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               <ShoppingBag className="h-4 w-4" />
               Browse Cards
             </Link>
@@ -51,14 +43,14 @@ export default function HomePage() {
               href={siteConfig.ebay}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/[0.07]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-strong)] bg-slab px-6 py-3.5 text-sm font-semibold text-ink shadow-sm transition hover:border-teal/30 hover:text-teal"
             >
               Shop on eBay
               <ExternalLink className="h-4 w-4 opacity-70" />
             </a>
             <Link
               href="/live"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--neon-magenta)]/25 bg-[var(--neon-magenta)]/10 px-6 py-3.5 text-sm font-semibold text-[var(--neon-magenta)] transition hover:bg-[var(--neon-magenta)]/20"
+              className="inline-flex items-center gap-2 rounded-xl border border-purple/20 bg-purple/10 px-6 py-3.5 text-sm font-semibold text-purple transition hover:bg-purple/15"
             >
               <Radio className="h-4 w-4" />
               Watch Live
@@ -67,14 +59,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick links strip */}
-      <section className="border-b border-white/[0.06] bg-black/20">
+      <section className="border-b border-[var(--border)] bg-slab/50">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-4 px-4 py-5 text-sm sm:justify-between sm:px-6">
           <a
             href={siteConfig.ebay}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-zinc-400 transition hover:text-[var(--neon-cyan)]"
+            className="flex items-center gap-2 text-ink-soft transition hover:text-teal"
           >
             <ExternalLink className="h-4 w-4" />
             eBay Store
@@ -83,15 +74,12 @@ export default function HomePage() {
             href={siteConfig.whatnot}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-zinc-400 transition hover:text-[var(--neon-magenta)]"
+            className="flex items-center gap-2 text-ink-soft transition hover:text-purple"
           >
             <Radio className="h-4 w-4" />
             Whatnot Streams
           </a>
-          <Link
-            href="/shows"
-            className="flex items-center gap-2 text-zinc-400 transition hover:text-white"
-          >
+          <Link href="/shows" className="flex items-center gap-2 text-ink-soft transition hover:text-ink">
             <MapPin className="h-4 w-4" />
             Upcoming Shows
           </Link>
@@ -99,18 +87,17 @@ export default function HomePage() {
             href={siteConfig.x}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-zinc-400 transition hover:text-white"
+            className="flex items-center gap-2 text-ink-soft transition hover:text-ink"
           >
             @{siteConfig.x.split("/").pop()}
           </a>
         </div>
       </section>
 
-      {/* Grails teaser */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="mb-2 flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-[var(--neon-magenta)]" />
-          <span className="label-90s !text-[var(--neon-magenta)]">Higher End</span>
+          <Sparkles className="h-4 w-4 text-purple" />
+          <span className="label-90s !text-purple">Higher End</span>
         </div>
         <CardGrid
           items={grails}
@@ -119,17 +106,13 @@ export default function HomePage() {
           relaxed
         />
         <div className="mt-10 text-center">
-          <Link
-            href="/shop"
-            className="text-sm font-medium text-[var(--neon-magenta)] transition hover:text-[var(--neon-pink)]"
-          >
+          <Link href="/shop" className="text-sm font-semibold text-purple transition hover:text-purple-soft">
             View all grails →
           </Link>
         </div>
       </section>
 
-      {/* Featured */}
-      <section className="border-t border-white/[0.06] bg-black/15">
+      <section className="border-t border-[var(--border)] bg-paper-deep/60">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <CardGrid
             items={featured}
@@ -139,7 +122,7 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/[0.08]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-strong)] bg-slab px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-teal/30 hover:text-teal"
             >
               Full Shop
             </Link>
@@ -147,18 +130,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA band */}
-      <section className="relative overflow-hidden border-t border-white/[0.06]">
+      <section className="relative overflow-hidden border-t border-[var(--border)]">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-1/2 h-64 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--neon-cyan)]/[0.05] blur-[90px]" />
+          <div className="absolute left-1/2 top-1/2 h-64 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/[0.08] blur-[90px]" />
         </div>
         <div className="relative mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
-          <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
             Ready to deal?
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-zinc-400">
-            Browse the shop, catch us live on Whatnot, or hit us up about buying
-            or trading.
+          <p className="mx-auto mt-4 max-w-md text-ink-soft">
+            Browse the shop, catch us live on Whatnot, or hit us up about buying or trading.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
@@ -172,7 +153,7 @@ export default function HomePage() {
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/[0.05]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-strong)] bg-slab px-6 py-3.5 text-sm font-semibold text-ink shadow-sm transition hover:border-teal/30"
             >
               Contact Us
             </Link>
