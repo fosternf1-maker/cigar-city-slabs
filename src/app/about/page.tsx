@@ -9,48 +9,46 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
       <p className="label-90s">About</p>
-      <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <h1 className="display mt-3 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
         Cigar City Slabs
       </h1>
-      <p className="mt-3 text-lg text-zinc-400">
-        Tampa roots. Card culture. Fun first.
-      </p>
+      <p className="mt-3 text-lg text-ink-soft">Tampa roots. Card culture. Fun first.</p>
 
-      <div className="mt-12 space-y-6 text-[15px] leading-relaxed text-zinc-300">
+      <div className="mt-12 space-y-6 text-[15px] leading-relaxed text-ink-soft">
         <p>
-          We’re a Tampa-based trading card outfit focused on buying, trading, and
-          reselling cards in a fun environment. The name nods to the city’s
-          nickname — Cigar City — because this is where we’re planted.
+          We’re a Tampa-based trading card outfit focused on buying, trading, and reselling
+          cards in a fun environment. The name nods to the city’s nickname — Cigar City —
+          because this is where we’re planted.
         </p>
         <p>
-          Whether you’re hunting a modern rookie, a classic slab, or just want
-          to flip through some heat, we’re here for the hobby. No gatekeeping,
-          no attitude — just cards, conversation, and the occasional good deal.
+          Whether you’re hunting a modern rookie, a classic slab, or just want to flip through
+          some heat, we’re here for the hobby. No gatekeeping, no attitude — just cards,
+          conversation, and the occasional good deal.
         </p>
         <p>
-          You’ll find us at local shows, streaming on Whatnot, and listing daily
-          on eBay. If you’ve got a collection to move or you’re looking for
-          something specific, reach out. We’re always down to talk cards.
+          You’ll find us at local shows, streaming on Whatnot, and listing daily on eBay. If
+          you’ve got a collection to move or you’re looking for something specific, reach out.
+          We’re always down to talk cards.
         </p>
       </div>
 
       <div className="mt-14 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/[0.06] bg-[var(--card-bg)] p-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
+        <div className="surface p-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-teal">
             What we do
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-zinc-300">
+          <ul className="mt-4 space-y-2 text-sm text-ink-soft">
             <li>• Buy singles, slabs & collections</li>
             <li>• Trade at shows and online</li>
             <li>• Resell via eBay & Whatnot</li>
             <li>• Show up in person around Tampa Bay</li>
           </ul>
         </div>
-        <div className="rounded-2xl border border-white/[0.06] bg-[var(--card-bg)] p-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
+        <div className="surface p-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-teal">
             Where to find us
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-zinc-300">
+          <ul className="mt-4 space-y-2 text-sm text-ink-soft">
             <li>• eBay: cigar_city_slabs</li>
             <li>• Whatnot: CigarCitySlab</li>
             <li>• X: @CigarCitySlabs</li>

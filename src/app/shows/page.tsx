@@ -10,50 +10,45 @@ export default function ShowsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
       <p className="label-90s">In Person</p>
-      <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <h1 className="display mt-3 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
         Upcoming Shows
       </h1>
-      <p className="mt-4 text-zinc-400">
-        Catch us at card shows around the Tampa Bay area and beyond. Dates and
-        details get updated here as we lock them in.
+      <p className="mt-4 text-ink-soft">
+        Catch us at card shows around the Tampa Bay area and beyond. Dates and details get
+        updated here as we lock them in.
       </p>
 
       <div className="mt-12 space-y-4">
         {upcomingShows.map((show) => (
-          <div
-            key={show.id}
-            className="rounded-2xl border border-white/[0.06] bg-[var(--card-bg)] p-6 neon-border"
-          >
+          <div key={show.id} className="surface p-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <h2 className="text-lg font-semibold text-white">{show.name}</h2>
-                <div className="mt-3 flex flex-wrap gap-5 text-sm text-zinc-400">
+                <h2 className="text-lg font-semibold text-ink">{show.name}</h2>
+                <div className="mt-3 flex flex-wrap gap-5 text-sm text-ink-soft">
                   <span className="inline-flex items-center gap-1.5">
-                    <Calendar className="h-4 w-4 text-[var(--neon-cyan)]" />
+                    <Calendar className="h-4 w-4 text-teal" />
                     {show.date}
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4 text-[var(--neon-cyan)]" />
+                    <MapPin className="h-4 w-4 text-teal" />
                     {show.location}
                   </span>
                 </div>
-                {show.notes && (
-                  <p className="mt-4 text-sm text-zinc-500">{show.notes}</p>
-                )}
+                {show.notes && <p className="mt-4 text-sm text-muted">{show.notes}</p>}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-8 text-center">
-        <p className="text-sm text-zinc-400">
+      <div className="mt-12 rounded-2xl border border-dashed border-[var(--border-strong)] bg-slab/60 p-8 text-center">
+        <p className="text-sm text-ink-soft">
           More shows coming. Follow{" "}
           <a
             href={siteConfig.x}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--neon-cyan)] transition hover:underline"
+            className="font-semibold text-teal transition hover:underline"
           >
             @CigarCitySlabs
           </a>{" "}

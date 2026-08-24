@@ -4,40 +4,40 @@ import { siteConfig } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-white/[0.06] bg-black/30">
+    <footer className="mt-auto bg-navy text-white">
+      <div className="jersey-stripes" />
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-[family-name:var(--font-display)] text-lg font-bold text-white">
-              Cigar City{" "}
-              <span className="text-[var(--neon-cyan)]">Slabs</span>
+            <p className="display text-xl font-extrabold tracking-tight">
+              Cigar City <span className="text-gold">Slabs</span>
             </p>
-            <p className="mt-2 text-sm text-zinc-500">{siteConfig.tagline}</p>
-            <p className="mt-1 text-sm text-zinc-600">{siteConfig.location}</p>
+            <p className="mt-2 text-sm text-white/55">{siteConfig.tagline}</p>
+            <p className="mt-1 text-sm text-white/40">{siteConfig.location}</p>
           </div>
 
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gold">
               Explore
             </p>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
-                <Link href="/shop" className="text-zinc-400 transition hover:text-white">
+                <Link href="/shop" className="text-white/65 transition hover:text-white">
                   Shop
                 </Link>
               </li>
               <li>
-                <Link href="/shows" className="text-zinc-400 transition hover:text-white">
+                <Link href="/shows" className="text-white/65 transition hover:text-white">
                   Upcoming Shows
                 </Link>
               </li>
               <li>
-                <Link href="/live" className="text-zinc-400 transition hover:text-white">
+                <Link href="/live" className="text-white/65 transition hover:text-white">
                   Live Streams
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-zinc-400 transition hover:text-white">
+                <Link href="/about" className="text-white/65 transition hover:text-white">
                   About
                 </Link>
               </li>
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gold">
               Shop & Stream
             </p>
             <ul className="mt-4 space-y-2.5 text-sm">
@@ -54,7 +54,7 @@ export default function Footer() {
                   href={siteConfig.ebay}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-zinc-400 transition hover:text-[var(--neon-cyan)]"
+                  className="inline-flex items-center gap-1.5 text-white/65 transition hover:text-teal-bright"
                 >
                   eBay Store
                   <ExternalLink className="h-3 w-3" />
@@ -65,7 +65,7 @@ export default function Footer() {
                   href={siteConfig.whatnot}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-zinc-400 transition hover:text-[var(--neon-magenta)]"
+                  className="inline-flex items-center gap-1.5 text-white/65 transition hover:text-gold"
                 >
                   Whatnot
                   <ExternalLink className="h-3 w-3" />
@@ -75,7 +75,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gold">
               Connect
             </p>
             <ul className="mt-4 space-y-2.5 text-sm">
@@ -84,7 +84,7 @@ export default function Footer() {
                   href={siteConfig.x}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-400 transition hover:text-white"
+                  className="text-white/65 transition hover:text-white"
                 >
                   @{siteConfig.x.split("/").pop()}
                 </a>
@@ -92,7 +92,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-zinc-400 transition hover:text-white"
+                  className="text-white/65 transition hover:text-white"
                 >
                   {siteConfig.email}
                 </a>
@@ -101,7 +101,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/[0.06] pt-6 text-center text-xs text-zinc-600">
+        <div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-white/35">
           © {new Date().getFullYear()} Cigar City Slabs · Tampa, FL · All rights
           reserved
         </div>
