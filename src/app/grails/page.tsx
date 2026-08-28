@@ -24,8 +24,7 @@ export default function GrailsPage() {
       </h1>
       <p className="mt-4 max-w-xl text-zinc-400">
         The desk for cards that make you pause. When we&apos;ve got heat, it
-        goes up on eBay — we don&apos;t park dummy Trouts and Griffeys on this
-        page with prices we made up.
+        goes up on eBay — we don&apos;t park dummy prices on this page.
       </p>
 
       <div className="mt-10 flex flex-wrap gap-3">

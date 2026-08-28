@@ -109,8 +109,8 @@ export default function HomePage() {
         </h2>
         <p className="mt-3 max-w-xl text-sm text-zinc-500 sm:text-base">
           Serious cards. Cleaner presentation. The ones that make you pause.
-          We don&apos;t fake a case of Trout and Griffey on this site — live
-          grails list on eBay.
+          Live grails list on eBay — we don&apos;t park made-up prices on this
+          site.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
