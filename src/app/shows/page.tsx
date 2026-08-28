@@ -48,16 +48,23 @@ export default function ShowsPage() {
 
       <div className="mt-12 rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-8 text-center">
         <p className="text-sm text-zinc-400">
-          More shows coming. Follow{" "}
+          More shows coming. Dates land on this page when we lock them in. Ping{" "}
           <a
-            href={siteConfig.x}
+            href={`mailto:${siteConfig.email}`}
+            className="text-[var(--neon-cyan)] transition hover:underline"
+          >
+            {siteConfig.email}
+          </a>{" "}
+          or catch us on{" "}
+          <a
+            href={siteConfig.whatnot}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--neon-cyan)] transition hover:underline"
           >
-            @CigarCitySlabs
+            Whatnot
           </a>{" "}
-          for the latest drops and locations.
+          if you want a heads-up. X is optional, not the only path.
         </p>
       </div>
     </div>

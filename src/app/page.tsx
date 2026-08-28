@@ -1,22 +1,16 @@
 import Link from "next/link";
 import { ExternalLink, Radio, MapPin, ShoppingBag, Sparkles } from "lucide-react";
-import { cards, siteConfig } from "@/lib/data";
-import CardGrid from "@/components/CardGrid";
+import { siteConfig, siteHandles } from "@/lib/data";
+import LaneGrid from "@/components/LaneGrid";
 
 export default function HomePage() {
-  const grails = cards.filter((c) => c.category === "grails").slice(0, 4);
-  const featured = cards.filter((c) => c.category !== "grails").slice(0, 4);
-
   return (
     <div>
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/[0.06]">
-        {/* Layered neon atmosphere */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-40 -top-20 h-[420px] w-[420px] rounded-full bg-[var(--neon-cyan)]/[0.09] blur-[120px]" />
           <div className="absolute -right-32 top-1/3 h-[360px] w-[360px] rounded-full bg-[var(--neon-magenta)]/[0.07] blur-[110px]" />
           <div className="absolute bottom-0 left-1/2 h-48 w-[600px] -translate-x-1/2 rounded-full bg-[var(--neon-cyan)]/[0.04] blur-[80px]" />
-          {/* Soft geometric accent */}
           <div className="absolute right-8 top-16 hidden h-32 w-32 rotate-12 rounded-2xl border border-[var(--neon-cyan)]/10 sm:block" />
           <div className="absolute right-20 top-28 hidden h-20 w-20 -rotate-6 rounded-xl border border-[var(--neon-magenta)]/15 sm:block" />
         </div>
@@ -40,22 +34,22 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              href="/shop"
-              className="btn-primary inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-            >
-              <ShoppingBag className="h-4 w-4" />
-              Browse Cards
-            </Link>
             <a
               href={siteConfig.ebay}
               target="_blank"
               rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+            >
+              <ShoppingBag className="h-4 w-4" />
+              Shop on eBay
+              <ExternalLink className="h-4 w-4 opacity-80" />
+            </a>
+            <Link
+              href="/shop"
               className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/[0.07]"
             >
-              Shop on eBay
-              <ExternalLink className="h-4 w-4 opacity-70" />
-            </a>
+              What we deal in
+            </Link>
             <Link
               href="/live"
               className="inline-flex items-center gap-2 rounded-xl border border-[var(--neon-magenta)]/25 bg-[var(--neon-magenta)]/10 px-6 py-3.5 text-sm font-semibold text-[var(--neon-magenta)] transition hover:bg-[var(--neon-magenta)]/20"
@@ -67,7 +61,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick links strip */}
       <section className="border-b border-white/[0.06] bg-black/20">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-4 px-4 py-5 text-sm sm:justify-between sm:px-6">
           <a
@@ -101,41 +94,55 @@ export default function HomePage() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-zinc-400 transition hover:text-white"
           >
-            @{siteConfig.x.split("/").pop()}
+            @{siteHandles.x}
           </a>
         </div>
       </section>
 
-      {/* Grails teaser */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="mb-2 flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-[var(--neon-magenta)]" />
           <span className="label-90s !text-[var(--neon-magenta)]">Higher End</span>
         </div>
-        <CardGrid
-          items={grails}
-          title="Grails"
-          subtitle="Serious cards. Cleaner presentation. The ones that make you pause."
-          relaxed
-        />
-        <div className="mt-10 text-center">
+        <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl">
+          Grails
+        </h2>
+        <p className="mt-3 max-w-xl text-sm text-zinc-500 sm:text-base">
+          Serious cards. Cleaner presentation. The ones that make you pause.
+          Live grails list on eBay — we don&apos;t park made-up prices on this
+          site.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
           <Link
-            href="/shop"
-            className="text-sm font-medium text-[var(--neon-magenta)] transition hover:text-[var(--neon-pink)]"
+            href="/grails"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--neon-magenta)]/30 bg-[var(--neon-magenta)]/10 px-5 py-3 text-sm font-semibold text-[var(--neon-magenta)] transition hover:bg-[var(--neon-magenta)]/20"
           >
             View all grails →
           </Link>
+          <a
+            href={siteConfig.ebay}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.05]"
+          >
+            eBay store
+            <ExternalLink className="h-4 w-4 opacity-70" />
+          </a>
         </div>
       </section>
 
-      {/* Featured */}
       <section className="border-t border-white/[0.06] bg-black/15">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <CardGrid
-            items={featured}
-            title="Fresh Stock"
-            subtitle="Recent additions — singles, slabs, and sealed product."
-          />
+          <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            The shop
+          </h2>
+          <p className="mt-3 max-w-xl text-sm text-zinc-500 sm:text-base">
+            Singles, slabs, sealed wax. Purchases go through eBay. This site is
+            the hangout — not a fake inventory grid.
+          </p>
+          <div className="mt-10">
+            <LaneGrid ids={["slabs", "singles", "sealed"]} />
+          </div>
           <div className="mt-10 text-center">
             <Link
               href="/shop"
@@ -147,7 +154,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA band */}
       <section className="relative overflow-hidden border-t border-white/[0.06]">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-1/2 h-64 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--neon-cyan)]/[0.05] blur-[90px]" />
@@ -157,8 +163,8 @@ export default function HomePage() {
             Ready to deal?
           </h2>
           <p className="mx-auto mt-4 max-w-md text-zinc-400">
-            Browse the shop, catch us live on Whatnot, or hit us up about buying
-            or trading.
+            Browse the eBay store, catch us live on Whatnot, or hit us up about
+            buying or trading.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a

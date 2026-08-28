@@ -1,5 +1,5 @@
 import { Mail, ExternalLink } from "lucide-react";
-import { siteConfig } from "@/lib/data";
+import { siteConfig, siteHandles } from "@/lib/data";
 
 export const metadata = {
   title: "Contact",
@@ -43,7 +43,7 @@ export default function ContactPage() {
           </div>
           <div>
             <p className="font-semibold text-white">X / Twitter</p>
-            <p className="mt-1 text-sm text-zinc-400">@CigarCitySlabs</p>
+            <p className="mt-1 text-sm text-zinc-400">@{siteHandles.x}</p>
           </div>
         </a>
       </div>

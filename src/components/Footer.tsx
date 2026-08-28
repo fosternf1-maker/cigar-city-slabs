@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-import { siteConfig } from "@/lib/data";
+import { siteConfig, siteHandles } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -24,6 +24,11 @@ export default function Footer() {
               <li>
                 <Link href="/shop" className="text-zinc-400 transition hover:text-white">
                   Shop
+                </Link>
+              </li>
+              <li>
+                <Link href="/grails" className="text-zinc-400 transition hover:text-white">
+                  Grails
                 </Link>
               </li>
               <li>
@@ -86,7 +91,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-zinc-400 transition hover:text-white"
                 >
-                  @{siteConfig.x.split("/").pop()}
+                  @{siteHandles.x}
                 </a>
               </li>
               <li>
@@ -97,13 +102,20 @@ export default function Footer() {
                   {siteConfig.email}
                 </a>
               </li>
+              <li>
+                <Link href="/privacy" className="text-zinc-400 transition hover:text-white">
+                  Privacy
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 border-t border-white/[0.06] pt-6 text-center text-xs text-zinc-600">
-          © {new Date().getFullYear()} Cigar City Slabs · Tampa, FL · All rights
-          reserved
+          © {new Date().getFullYear()} Cigar City Slabs · Tampa, FL ·{" "}
+          <Link href="/privacy" className="transition hover:text-zinc-400">
+            Privacy
+          </Link>
         </div>
       </div>
     </footer>

@@ -1,30 +1,42 @@
 import { ExternalLink } from "lucide-react";
-import { cards, siteConfig } from "@/lib/data";
+import { cards, isLiveEbayItem, siteConfig } from "@/lib/data";
 import CardGrid from "@/components/CardGrid";
+import LaneGrid from "@/components/LaneGrid";
 
 export const metadata = {
   title: "Shop",
   description:
-    "Browse trading cards, graded slabs, sealed product, and grails from Cigar City Slabs.",
+    "Cigar City Slabs sells on eBay — graded slabs, raw singles, sealed wax, and grails from Tampa.",
 };
 
 export default function ShopPage() {
-  const grails = cards.filter((c) => c.category === "grails");
-  const slabs = cards.filter((c) => c.category === "slabs");
-  const singles = cards.filter((c) => c.category === "singles");
-  const sealed = cards.filter((c) => c.category === "sealed");
+  const liveGrails = cards.filter(
+    (c) => c.category === "grails" && isLiveEbayItem(c.ebayUrl),
+  );
+  const liveSlabs = cards.filter(
+    (c) => c.category === "slabs" && isLiveEbayItem(c.ebayUrl),
+  );
+  const liveSingles = cards.filter(
+    (c) => c.category === "singles" && isLiveEbayItem(c.ebayUrl),
+  );
+  const liveSealed = cards.filter(
+    (c) => c.category === "sealed" && isLiveEbayItem(c.ebayUrl),
+  );
+  const hasLiveListings =
+    liveGrails.length + liveSlabs.length + liveSingles.length + liveSealed.length >
+    0;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
       <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="label-90s mb-2">Inventory</p>
+          <p className="label-90s mb-2">The case is on eBay</p>
           <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Shop
           </h1>
           <p className="mt-3 max-w-lg text-zinc-400">
-            Scroll the grid, tap a card for a closer look. All purchases currently
-            go through our eBay store.
+            All purchases currently go through our eBay store. This page is the
+            shop desk — not a live catalog of tappable cards.
           </p>
         </div>
         <a
@@ -33,61 +45,43 @@ export default function ShopPage() {
           rel="noopener noreferrer"
           className="btn-primary inline-flex shrink-0 items-center gap-2 px-5 py-3 text-sm"
         >
-          Full inventory on eBay
+          Shop the eBay store
           <ExternalLink className="h-4 w-4" />
         </a>
       </div>
 
-      {/* Filter chips – visual only for now */}
-      <div className="mb-12 flex flex-wrap gap-2">
-        {["All", "Grails", "Slabs", "Singles", "Sealed"].map((label) => (
-          <span
-            key={label}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition ${
-              label === "All"
-                ? "border border-[var(--neon-cyan)]/30 bg-[var(--neon-cyan)]/15 text-[var(--neon-cyan)]"
-                : "border border-white/5 bg-white/[0.03] text-zinc-400"
-            }`}
-          >
-            {label}
-          </span>
-        ))}
+      <div className="mb-16 rounded-2xl border border-[var(--neon-cyan)]/20 bg-[var(--neon-cyan)]/[0.06] p-5 text-sm text-zinc-300">
+        Live inventory lives on eBay. We don&apos;t post sample SKUs or made-up
+        prices here.
       </div>
 
-      <div className="space-y-20">
-        {grails.length > 0 && (
+      <LaneGrid />
+
+      {hasLiveListings && (
+        <div className="mt-20 space-y-20">
           <CardGrid
-            items={grails}
-            title="Grails"
-            subtitle="Higher-end cards. Calmer presentation, serious heat."
+            items={liveGrails}
+            title="Grails on eBay"
+            subtitle="Live listings only — each card goes to its eBay item."
             relaxed
           />
-        )}
-
-        {slabs.length > 0 && (
           <CardGrid
-            items={slabs}
-            title="Graded Slabs"
-            subtitle="PSA, BGS, and more — already protected and ready."
+            items={liveSlabs}
+            title="Graded slabs on eBay"
+            subtitle="PSA, BGS, and more — already protected."
           />
-        )}
-
-        {singles.length > 0 && (
           <CardGrid
-            items={singles}
-            title="Singles"
-            subtitle="Raw cards looking for a new home."
+            items={liveSingles}
+            title="Raw singles on eBay"
+            subtitle="Ungraded cards. Graded slabs stay in the slab lane."
           />
-        )}
-
-        {sealed.length > 0 && (
           <CardGrid
-            items={sealed}
-            title="Sealed"
+            items={liveSealed}
+            title="Sealed on eBay"
             subtitle="Factory sealed product."
           />
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="mt-20 rounded-2xl border border-white/[0.06] bg-[var(--card-bg)] p-8 text-center">
         <p className="text-zinc-300">

@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/data";
+import { siteConfig, siteHandles } from "@/lib/data";
 
 export const metadata = {
   title: "About",
@@ -51,10 +51,48 @@ export default function AboutPage() {
             Where to find us
           </p>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-            <li>• eBay: cigar_city_slabs</li>
-            <li>• Whatnot: CigarCitySlab</li>
-            <li>• X: @CigarCitySlabs</li>
-            <li>• Email: {siteConfig.email}</li>
+            <li>
+              • eBay:{" "}
+              <a
+                href={siteConfig.ebay}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--neon-cyan)] transition hover:underline"
+              >
+                {siteHandles.ebay}
+              </a>
+            </li>
+            <li>
+              • Whatnot:{" "}
+              <a
+                href={siteConfig.whatnot}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--neon-cyan)] transition hover:underline"
+              >
+                {siteHandles.whatnot}
+              </a>
+            </li>
+            <li>
+              • X:{" "}
+              <a
+                href={siteConfig.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--neon-cyan)] transition hover:underline"
+              >
+                @{siteHandles.x}
+              </a>
+            </li>
+            <li>
+              • Email:{" "}
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="text-[var(--neon-cyan)] transition hover:underline"
+              >
+                {siteConfig.email}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
