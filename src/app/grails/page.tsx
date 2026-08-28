@@ -1,12 +1,15 @@
 import { ExternalLink, Sparkles } from "lucide-react";
 import { cards, isLiveEbayItem, siteConfig } from "@/lib/data";
 import CardGrid from "@/components/CardGrid";
+import DailyHighlight from "@/components/DailyHighlight";
 
 export const metadata = {
   title: "Grails",
   description:
     "Higher-end cards from Cigar City Slabs. Live grails list on eBay — this isn’t a fake catalog.",
 };
+
+export const revalidate = 86400;
 
 export default function GrailsPage() {
   const liveGrails = cards.filter(
@@ -23,8 +26,8 @@ export default function GrailsPage() {
         Grails
       </h1>
       <p className="mt-4 max-w-xl text-zinc-400">
-        The desk for cards that make you pause. When we&apos;ve got heat, it
-        goes up on eBay — we don&apos;t park dummy prices on this page.
+        The desk for cards that make you pause. Today&apos;s highlight is the
+        highest-priced listing currently on eBay — not a made-up grail card.
       </p>
 
       <div className="mt-10 flex flex-wrap gap-3">
@@ -45,7 +48,11 @@ export default function GrailsPage() {
         </a>
       </div>
 
-      {liveGrails.length > 0 ? (
+      <div className="mt-12">
+        <DailyHighlight />
+      </div>
+
+      {liveGrails.length > 0 && (
         <div className="mt-16">
           <CardGrid
             items={liveGrails}
@@ -53,17 +60,6 @@ export default function GrailsPage() {
             subtitle="Each tile is a real eBay item, not a sample."
             relaxed
           />
-        </div>
-      ) : (
-        <div className="mt-16 overflow-hidden rounded-2xl border border-[var(--neon-magenta)]/25 bg-[var(--card-bg)] p-8 sm:p-12 neon-border-magenta">
-          <p className="font-[family-name:var(--font-display)] text-xl font-semibold text-white">
-            No live grail listings wired here yet
-          </p>
-          <p className="mt-3 max-w-lg text-sm leading-relaxed text-zinc-400">
-            This route is real so “View all grails” isn&apos;t a dead button.
-            The buy path is still the eBay store until we plug in actual item
-            URLs.
-          </p>
         </div>
       )}
     </div>
