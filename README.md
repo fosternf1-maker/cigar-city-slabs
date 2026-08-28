@@ -21,9 +21,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Site map
 
-- `/` — Home (hero, today's eBay highlight, grails desk, shop lanes)
-- `/shop` — Honest shop desk, today's highlight, eBay store CTA (no fake SKUs)
-- `/grails` — Grails desk + today's highest live eBay listing
+- `/` — Home (hero, today's highlight from the shop tracker, grails desk, shop lanes)
+- `/shop` — Honest shop desk, today's highlight, live-listing carousel, eBay store CTA
+- `/grails` — Grails desk + today's highlight from the tracker
 - `/shows` — Upcoming in-person card shows (coming soon is fine)
 - `/live` — Whatnot stream link
 - `/about` — Story / vibe
@@ -42,26 +42,22 @@ Unknown URLs use a branded 404 with a home link (header/footer still wrap it).
 ## Notes
 
 - Keep `cards` empty until each row has a real eBay item URL (`/itm/` or `/p/`). Do not add placeholder SKUs or prices.
-- **Today's highlight** is the highest-priced *current* listing from `cigar_city_slabs`. It is recomputed at most daily (ISR, 24h). Ties pick the smaller item id. If the feed is empty or fails, the site shows an honest fallback that still points at the eBay store — it will not invent a card, price, or item id.
-- Shop and grails CTAs go to the eBay store until additional real item URLs exist.
+- **Today's highlight** and the shop carousel read the **Highlighted Cards Google Sheet tracker**. A row shows only when `live=YES` **and** `ebay_url` is a real eBay item URL. Instruction rows and blank URLs are skipped.
+- If no `price` column (or no prices filled in), the highlight uses `sort`, then item id. Once a real `price` column exists, the highlight is the highest-priced live row. Ties pick the smaller item id. Missing prices are not invented.
+- Photos come from `photo_filename` (a Drive file id or https URL). The Highlighted Cards Drive folder is for Nathan's files — we never scrape eBay or PSA.
+- Refresh is ISR (hourly, which is at least daily). Empty or unreachable tracker → honest fallback that still links to the eBay store.
 - Whatnot handle on the site is taken from the Whatnot URL so About copy cannot drift.
 - Design: dark base, cyan + magenta neon accents, calmer treatment for grails.
-- Logo slot is ready — drop an image into `public/` and wire it in the Header when you have it.
 
-## eBay inventory feed
+## Shop tracker (source of truth)
 
-The highlight prefers eBay's public seller RSS (`_ssn=cigar_city_slabs&_rss=1`). eBay often **403s datacenter IPs** (Vercel included), so RSS may fail in production even though it is the right public feed.
+Spreadsheet: [Highlighted Cards tracker](https://docs.google.com/spreadsheets/d/1n4PxXbJ5g-Gx1jhvAXWnsWhX87k3R9lQ71vjzf0V9V0) (`Sheet1`).
 
-If RSS is blocked, the site uses the official **Browse API** when these Vercel env vars are set (Production + Preview):
+Columns: `live`, `sort`, `player`, `year`, `set`, `grade`, `ebay_url`, `photo_filename`, `notes`. An optional `price` column is used for Today's highlight only when it contains a real listing price.
 
-| Variable | Where to get it |
-| --- | --- |
-| `EBAY_CLIENT_ID` | [eBay Developers Program](https://developer.ebay.com/) application keyset (Production Client ID) |
-| `EBAY_CLIENT_SECRET` | The matching Client Secret. Do not commit it. |
+Photo folder: [Highlighted Cards](https://drive.google.com/drive/folders/1F_tNA7lW-RbFVaTyFaTanQOmER0eRxTt).
 
-Create a keyset, enable the **Buy Browse** / client-credentials scope (`https://api.ebay.com/oauth/api_scope`), then add both values in the Vercel project → Settings → Environment Variables. Redeploy after saving.
-
-There is no eBay credential in this repo. Do not paste a dummy app id to "make it look live." Without a working RSS response or real keys, the highlight stays on the honest empty/fallback state.
+The site fetches the sheet as CSV. **No eBay API key is used.** Share the tracker (and the photo folder, if you want photos to render) as **Anyone with the link → Viewer** in Google Drive so Vercel can read it. Do not paste listing URLs in chat — put them in `ebay_url` on the sheet. Do not create eBay listings from this repo.
 
 ## Future ideas (your “Blockbuster walk-through” vision)
 

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --experimental-default-type=module --test src/lib/ebay-parse.test.ts"
+    "test": "node --experimental-strip-types --experimental-default-type=module --test src/lib/tracker-parse.test.ts"
   },
   "dependencies": {
     "framer-motion": "^13.1.0",

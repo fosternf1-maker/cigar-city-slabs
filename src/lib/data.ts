@@ -53,7 +53,7 @@ export const siteHandles = {
   x: handleFromUrl(siteConfig.x),
 };
 
-export { isLiveEbayItem } from "@/lib/ebay-parse";
+export { isLiveEbayItem } from "@/lib/tracker-parse";
 
 export const shopLanes = [
   {

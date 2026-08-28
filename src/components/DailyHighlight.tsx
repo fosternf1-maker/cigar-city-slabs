@@ -1,20 +1,13 @@
 import { ExternalLink, Sparkles } from "lucide-react";
 import { siteConfig, siteHandles } from "@/lib/data";
-import { getDailyHighlight } from "@/lib/ebay";
+import { getTracker } from "@/lib/tracker";
 
-function formatPrice(price: number, currency: string): string {
-  try {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency,
-      maximumFractionDigits: 2,
-    }).format(price);
-  } catch {
-    return `$${price.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
-  }
+function formatPrice(price: number): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 2,
+  }).format(price);
 }
 
 function Fallback({
@@ -50,13 +43,13 @@ function Fallback({
 }
 
 export default async function DailyHighlight() {
-  const result = await getDailyHighlight();
+  const result = await getTracker();
 
   if (result.status === "empty") {
     return (
       <Fallback
         headline="No live listings to highlight"
-        body="The eBay store has nothing we can show as today's highest listing. When something is up, it will appear here — until then, the store itself is the source of truth."
+        body="Nothing on the shop tracker is live with a real eBay item URL yet. When a listing is up, it shows here — until then the eBay store is the buy path. We don't invent cards or prices."
       />
     );
   }
@@ -64,31 +57,41 @@ export default async function DailyHighlight() {
   if (result.status === "unavailable") {
     return (
       <Fallback
-        headline="Couldn't load the eBay feed"
-        body="We didn't invent a card, price, or item while the live inventory feed was unreachable. Shop the eBay store for what's actually listed."
+        headline="Couldn't load the shop tracker"
+        body="We didn't invent a card, price, or item while the tracker was unreachable. Shop the eBay store for what's actually listed."
       />
     );
   }
 
-  const { listing } = result;
+  const { highlight } = result;
+  const meta = [highlight.set, highlight.year, highlight.grade]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <article className="overflow-hidden rounded-2xl border border-white/[0.06] bg-[var(--card-bg)] neon-border-magenta">
       <div className="grid md:grid-cols-[minmax(0,280px)_1fr]">
         <div className="relative aspect-[3/4] bg-gradient-to-br from-[#1a1218] via-[#141018] to-[#0e0c12] md:aspect-auto md:min-h-[320px]">
-          {listing.imageUrl ? (
-            // eBay CDN URLs are listing photos, not something we host.
+          {highlight.photoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={listing.imageUrl}
-              alt={listing.title}
+              src={highlight.photoUrl}
+              alt={highlight.title}
               className="absolute inset-0 h-full w-full object-contain p-4"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
-                No listing photo
-              </p>
+              <div>
+                {highlight.grade ? (
+                  <p className="font-[family-name:var(--font-display)] text-4xl font-bold text-[var(--neon-magenta)] neon-text-magenta">
+                    {highlight.grade}
+                  </p>
+                ) : (
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+                    No listing photo
+                  </p>
+                )}
+              </div>
             </div>
           )}
           <span className="absolute left-3 top-3 rounded-full border border-[var(--neon-magenta)]/30 bg-[var(--neon-magenta)]/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--neon-magenta)]">
@@ -104,18 +107,20 @@ export default async function DailyHighlight() {
             </p>
           </div>
           <h2 className="mt-3 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            {listing.title}
+            {highlight.title}
           </h2>
           <p className="mt-3 text-sm text-zinc-500">
-            Highest current listing on @{siteHandles.ebay} · refreshed daily from
-            live eBay inventory
+            {meta ||
+              `Live on @${siteHandles.ebay} · from the shop tracker`}
           </p>
-          <p className="mt-6 font-[family-name:var(--font-display)] text-3xl font-bold text-[var(--neon-magenta)] neon-text-magenta">
-            {formatPrice(listing.price, listing.currency)}
-          </p>
+          {typeof highlight.price === "number" && (
+            <p className="mt-6 font-[family-name:var(--font-display)] text-3xl font-bold text-[var(--neon-magenta)] neon-text-magenta">
+              {formatPrice(highlight.price)}
+            </p>
+          )}
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={listing.url}
+              href={highlight.ebayUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2 px-5 py-3 text-sm"

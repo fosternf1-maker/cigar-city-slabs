@@ -4,7 +4,7 @@ import { siteConfig, siteHandles } from "@/lib/data";
 import LaneGrid from "@/components/LaneGrid";
 import DailyHighlight from "@/components/DailyHighlight";
 
-export const revalidate = 86400;
+export const revalidate = 3600;
 
 export default function HomePage() {
   return (

@@ -9,7 +9,7 @@ export const metadata = {
     "Higher-end cards from Cigar City Slabs. Live grails list on eBay — this isn’t a fake catalog.",
 };
 
-export const revalidate = 86400;
+export const revalidate = 3600;
 
 export default function GrailsPage() {
   const liveGrails = cards.filter(
@@ -26,8 +26,8 @@ export default function GrailsPage() {
         Grails
       </h1>
       <p className="mt-4 max-w-xl text-zinc-400">
-        The desk for cards that make you pause. Today&apos;s highlight is the
-        highest-priced listing currently on eBay — not a made-up grail card.
+        The desk for cards that make you pause. Today&apos;s highlight is a live
+        tracker row with a real eBay item URL — not a made-up grail card.
       </p>
 
       <div className="mt-10 flex flex-wrap gap-3">

@@ -3,6 +3,7 @@ import { cards, isLiveEbayItem, siteConfig } from "@/lib/data";
 import CardGrid from "@/components/CardGrid";
 import LaneGrid from "@/components/LaneGrid";
 import DailyHighlight from "@/components/DailyHighlight";
+import LiveCarousel from "@/components/LiveCarousel";
 
 export const metadata = {
   title: "Shop",
@@ -10,7 +11,7 @@ export const metadata = {
     "Cigar City Slabs sells on eBay — graded slabs, raw singles, sealed wax, and grails from Tampa.",
 };
 
-export const revalidate = 86400;
+export const revalidate = 3600;
 
 export default function ShopPage() {
   const liveGrails = cards.filter(
@@ -57,10 +58,11 @@ export default function ShopPage() {
         <DailyHighlight />
       </div>
 
+      <LiveCarousel />
+
       <div className="mb-16 rounded-2xl border border-[var(--neon-cyan)]/20 bg-[var(--neon-cyan)]/[0.06] p-5 text-sm text-zinc-300">
-        Live inventory lives on eBay. Today&apos;s highlight is the highest-priced
-        current listing from that store — we don&apos;t post sample SKUs or
-        made-up prices here.
+        Live tiles come from the shop tracker, and only when a row is live with a
+        real eBay item URL. We don&apos;t post sample SKUs or made-up prices.
       </div>
 
       <LaneGrid />
