@@ -27,7 +27,7 @@ export const upcomingShows = [
     name: "Tampa Bay Card Show",
     date: "Coming Soon",
     location: "Tampa, FL",
-    notes: "Details dropping soon — follow us on X for updates.",
+    notes: "Details dropping soon — we'll post them here. Email or Whatnot works if you want a heads-up.",
   },
 ];
 

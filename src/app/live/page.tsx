@@ -43,11 +43,12 @@ export default function LivePage() {
 
       <div className="mt-10 space-y-3 text-sm leading-relaxed text-zinc-400">
         <p>
-          Follow the channel so you get notified when we go live. Streams are
-          usually announced on X as well.
+          Follow the Whatnot channel so you get notified when we go live. If a
+          stream is empty or nothing is scheduled, that page is still the live
+          path — not a dead end here.
         </p>
         <p>
-          Prefer to shop at your own pace? Everything also lives on our{" "}
+          Prefer to shop at your own pace? Listings live on our{" "}
           <a
             href={siteConfig.ebay}
             target="_blank"
@@ -55,6 +56,13 @@ export default function LivePage() {
             className="text-[var(--neon-cyan)] transition hover:underline"
           >
             eBay store
+          </a>
+          . Questions go to{" "}
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="text-[var(--neon-cyan)] transition hover:underline"
+          >
+            {siteConfig.email}
           </a>
           .
         </p>

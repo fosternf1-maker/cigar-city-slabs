@@ -28,7 +28,9 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/live` — Whatnot stream link
 - `/about` — Story / vibe
 - `/contact` — Email + socials (mailto, no form)
-- `/privacy` — Short privacy note
+- `/privacy` — Short privacy note (no email collection on this site)
+
+Unknown URLs use a branded 404 with a home link (header/footer still wrap it).
 
 ## Key links (edit in `src/lib/data.ts`)
 
