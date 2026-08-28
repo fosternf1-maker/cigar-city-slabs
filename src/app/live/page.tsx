@@ -1,5 +1,5 @@
 import { ExternalLink, Radio } from "lucide-react";
-import { siteConfig } from "@/lib/data";
+import { siteConfig, siteHandles } from "@/lib/data";
 
 export const metadata = {
   title: "Live Streams",
@@ -25,7 +25,7 @@ export default function LivePage() {
           </div>
           <div>
             <p className="font-[family-name:var(--font-display)] text-xl font-semibold text-white">
-              CigarCitySlab
+              {siteHandles.whatnot}
             </p>
             <p className="mt-1 text-sm text-zinc-500">on Whatnot</p>
           </div>

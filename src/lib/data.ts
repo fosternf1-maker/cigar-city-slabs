@@ -9,146 +9,17 @@ export type CardItem = {
   price: number;
   category: "singles" | "slabs" | "sealed" | "grails";
   image?: string;
-  ebayUrl?: string;
+  /** Required before a card can be shown as a buyable listing. */
+  ebayUrl: string;
   description?: string;
 };
 
-// Placeholder inventory — replace with real cards later
-// All sales currently push to eBay
-export const cards: CardItem[] = [
-  {
-    id: "1",
-    title: "Mike Trout Rookie",
-    player: "Mike Trout",
-    set: "2011 Topps Update",
-    year: "2011",
-    grade: "10",
-    grader: "PSA",
-    price: 1850,
-    category: "grails",
-    description: "Iconic Trout RC. Clean centering, sharp corners.",
-  },
-  {
-    id: "2",
-    title: "Patrick Mahomes Optic Rated Rookie",
-    player: "Patrick Mahomes",
-    set: "2017 Donruss Optic",
-    year: "2017",
-    grade: "9.5",
-    grader: "BGS",
-    price: 720,
-    category: "grails",
-    description: "High-end Mahomes RC in Optic.",
-  },
-  {
-    id: "3",
-    title: "Shohei Ohtani Rookie",
-    player: "Shohei Ohtani",
-    set: "2018 Topps Chrome",
-    year: "2018",
-    grade: "10",
-    grader: "PSA",
-    price: 950,
-    category: "slabs",
-  },
-  {
-    id: "4",
-    title: "Luka Doncic Prizm Silver",
-    player: "Luka Doncic",
-    set: "2018-19 Prizm",
-    year: "2018",
-    grade: "10",
-    grader: "PSA",
-    price: 480,
-    category: "slabs",
-  },
-  {
-    id: "5",
-    title: "Joe Burrow Optic",
-    player: "Joe Burrow",
-    set: "2020 Donruss Optic",
-    year: "2020",
-    grade: "10",
-    grader: "PSA",
-    price: 210,
-    category: "slabs",
-  },
-  {
-    id: "6",
-    title: "2023 Topps Chrome Hobby Box",
-    set: "2023 Topps Chrome",
-    year: "2023",
-    grader: "Raw",
-    price: 189,
-    category: "sealed",
-    description: "Factory sealed hobby box.",
-  },
-  {
-    id: "7",
-    title: "Ja Morant Prizm",
-    player: "Ja Morant",
-    set: "2019-20 Prizm",
-    year: "2019",
-    grade: "9",
-    grader: "PSA",
-    price: 145,
-    category: "singles",
-  },
-  {
-    id: "8",
-    title: "Justin Herbert Optic Rated Rookie",
-    player: "Justin Herbert",
-    set: "2020 Donruss Optic",
-    year: "2020",
-    grade: "10",
-    grader: "PSA",
-    price: 175,
-    category: "slabs",
-  },
-  {
-    id: "9",
-    title: "Ken Griffey Jr. Upper Deck",
-    player: "Ken Griffey Jr.",
-    set: "1989 Upper Deck",
-    year: "1989",
-    grade: "9",
-    grader: "PSA",
-    price: 320,
-    category: "grails",
-    description: "Classic Griffey RC. Strong eye appeal.",
-  },
-  {
-    id: "10",
-    title: "Victor Wembanyama Prizm Silver",
-    player: "Victor Wembanyama",
-    set: "2023-24 Prizm",
-    year: "2023",
-    grade: "10",
-    grader: "PSA",
-    price: 390,
-    category: "slabs",
-  },
-  {
-    id: "11",
-    title: "2024 Panini Prizm Football Hobby",
-    set: "2024 Prizm Football",
-    year: "2024",
-    grader: "Raw",
-    price: 249,
-    category: "sealed",
-  },
-  {
-    id: "12",
-    title: "Ronald Acuna Jr. Chrome",
-    player: "Ronald Acuña Jr.",
-    set: "2018 Topps Chrome",
-    year: "2018",
-    grade: "10",
-    grader: "PSA",
-    price: 265,
-    category: "slabs",
-  },
-];
+/**
+ * Live inventory is not wired on this site.
+ * Do not add placeholder SKUs, fake prices, or tappable "products"
+ * until each row has a real eBay item URL.
+ */
+export const cards: CardItem[] = [];
 
 export const upcomingShows = [
   {
@@ -159,6 +30,10 @@ export const upcomingShows = [
     notes: "Details dropping soon — follow us on X for updates.",
   },
 ];
+
+function handleFromUrl(url: string) {
+  return url.replace(/\/+$/, "").split("/").pop() ?? "";
+}
 
 export const siteConfig = {
   name: "Cigar City Slabs",
@@ -171,3 +46,64 @@ export const siteConfig = {
   x: "https://x.com/CigarCitySlabs",
   location: "Tampa, FL",
 };
+
+export const siteHandles = {
+  ebay: handleFromUrl(siteConfig.ebay),
+  whatnot: handleFromUrl(siteConfig.whatnot),
+  x: handleFromUrl(siteConfig.x),
+};
+
+export function isLiveEbayItem(url: string | undefined): url is string {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname !== "www.ebay.com" && parsed.hostname !== "ebay.com") {
+      return false;
+    }
+    if (parsed.pathname.startsWith("/usr/") || parsed.pathname === "/") {
+      return false;
+    }
+    return parsed.pathname.includes("/itm/") || parsed.pathname.includes("/p/");
+  } catch {
+    return false;
+  }
+}
+
+export const shopLanes = [
+  {
+    id: "grails",
+    title: "Grails",
+    subtitle: "Higher-end heat",
+    blurb: "The ones that make you pause. Hunt them on the grails desk — live ones list on eBay.",
+    href: "/grails",
+    external: false,
+    accent: "magenta" as const,
+  },
+  {
+    id: "slabs",
+    title: "Graded slabs",
+    subtitle: "Already in plastic",
+    blurb: "PSA, BGS, and friends. Live slabs are on the eBay store, not a fake grid here.",
+    href: siteConfig.ebay,
+    external: true,
+    accent: "cyan" as const,
+  },
+  {
+    id: "singles",
+    title: "Raw singles",
+    subtitle: "Junk wax to modern",
+    blurb: "Raw cards looking for a binder. We don't mix graded slabs into this bucket.",
+    href: siteConfig.ebay,
+    external: true,
+    accent: "cyan" as const,
+  },
+  {
+    id: "sealed",
+    title: "Sealed wax",
+    subtitle: "Factory sealed",
+    blurb: "Hobby boxes and sealed product when we've got it. Check eBay for what's actually in stock.",
+    href: siteConfig.ebay,
+    external: true,
+    accent: "cyan" as const,
+  },
+];

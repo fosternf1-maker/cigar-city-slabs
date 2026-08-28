@@ -21,12 +21,14 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Site map
 
-- `/` — Home (hero, grails teaser, fresh stock)
-- `/shop` — Scrollable card grid + detail modal (sales push to eBay)
-- `/shows` — Upcoming in-person card shows
+- `/` — Home (hero, grails desk, shop lanes)
+- `/shop` — Honest shop desk + eBay store CTA (no fake SKUs)
+- `/grails` — Grails desk; live listings only if real eBay item URLs exist
+- `/shows` — Upcoming in-person card shows (coming soon is fine)
 - `/live` — Whatnot stream link
 - `/about` — Story / vibe
-- `/contact` — Email + socials
+- `/contact` — Email + socials (mailto, no form)
+- `/privacy` — Short privacy note
 
 ## Key links (edit in `src/lib/data.ts`)
 
@@ -37,9 +39,10 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Notes
 
-- Inventory is currently placeholder data in `src/lib/data.ts`. Replace with real cards (or later wire an API / CMS).
-- All “Buy” CTAs go to the eBay store for now.
-- Design: dark base, cyan + magenta neon accents, calmer treatment for the Grails section.
+- Live inventory is **not** wired. Keep `cards` empty until each row has a real eBay item URL (`/itm/` or `/p/`). Do not add placeholder SKUs or prices.
+- Shop and grails CTAs go to the eBay store until real item URLs exist.
+- Whatnot handle on the site is taken from the Whatnot URL so About copy cannot drift.
+- Design: dark base, cyan + magenta neon accents, calmer treatment for grails.
 - Logo slot is ready — drop an image into `public/` and wire it in the Header when you have it.
 
 ## Future ideas (your “Blockbuster walk-through” vision)

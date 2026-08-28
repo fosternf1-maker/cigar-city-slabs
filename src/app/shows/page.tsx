@@ -1,5 +1,5 @@
 import { MapPin, Calendar } from "lucide-react";
-import { upcomingShows, siteConfig } from "@/lib/data";
+import { upcomingShows, siteConfig, siteHandles } from "@/lib/data";
 
 export const metadata = {
   title: "Upcoming Shows",
@@ -55,7 +55,7 @@ export default function ShowsPage() {
             rel="noopener noreferrer"
             className="text-[var(--neon-cyan)] transition hover:underline"
           >
-            @CigarCitySlabs
+            @{siteHandles.x}
           </a>{" "}
           for the latest drops and locations.
         </p>
