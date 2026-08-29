@@ -53,21 +53,7 @@ export const siteHandles = {
   x: handleFromUrl(siteConfig.x),
 };
 
-export function isLiveEbayItem(url: string | undefined): url is string {
-  if (!url) return false;
-  try {
-    const parsed = new URL(url);
-    if (parsed.hostname !== "www.ebay.com" && parsed.hostname !== "ebay.com") {
-      return false;
-    }
-    if (parsed.pathname.startsWith("/usr/") || parsed.pathname === "/") {
-      return false;
-    }
-    return parsed.pathname.includes("/itm/") || parsed.pathname.includes("/p/");
-  } catch {
-    return false;
-  }
-}
+export { isLiveEbayItem } from "@/lib/tracker-parse";
 
 export const shopLanes = [
   {

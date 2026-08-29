@@ -21,9 +21,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Site map
 
-- `/` — Home (hero, grails desk, shop lanes)
-- `/shop` — Honest shop desk + eBay store CTA (no fake SKUs)
-- `/grails` — Grails desk; live listings only if real eBay item URLs exist
+- `/` — Home (hero, today's highlight from the shop tracker, grails desk, shop lanes)
+- `/shop` — Honest shop desk, today's highlight, live-listing carousel, eBay store CTA
+- `/grails` — Grails desk + today's highlight from the tracker
 - `/shows` — Upcoming in-person card shows (coming soon is fine)
 - `/live` — Whatnot stream link
 - `/about` — Story / vibe
@@ -41,11 +41,23 @@ Unknown URLs use a branded 404 with a home link (header/footer still wrap it).
 
 ## Notes
 
-- Live inventory is **not** wired. Keep `cards` empty until each row has a real eBay item URL (`/itm/` or `/p/`). Do not add placeholder SKUs or prices.
-- Shop and grails CTAs go to the eBay store until real item URLs exist.
+- Keep `cards` empty until each row has a real eBay item URL (`/itm/` or `/p/`). Do not add placeholder SKUs or prices.
+- **Today's highlight** and the shop carousel read the **Highlighted Cards Google Sheet tracker**. A row shows only when `live=YES` **and** `ebay_url` is a real eBay item URL. Instruction rows and blank URLs are skipped.
+- If no `price` column (or no prices filled in), the highlight uses `sort`, then item id. Once a real `price` column exists, the highlight is the highest-priced live row. Ties pick the smaller item id. Missing prices are not invented.
+- Photos come from `photo_filename` (a Drive file id or https URL). The Highlighted Cards Drive folder is for Nathan's files — we never scrape eBay or PSA.
+- Refresh is ISR (hourly, which is at least daily). Empty or unreachable tracker → honest fallback that still links to the eBay store.
 - Whatnot handle on the site is taken from the Whatnot URL so About copy cannot drift.
 - Design: dark base, cyan + magenta neon accents, calmer treatment for grails.
-- Logo slot is ready — drop an image into `public/` and wire it in the Header when you have it.
+
+## Shop tracker (source of truth)
+
+Spreadsheet: [Highlighted Cards tracker](https://docs.google.com/spreadsheets/d/1n4PxXbJ5g-Gx1jhvAXWnsWhX87k3R9lQ71vjzf0V9V0) (`Sheet1`).
+
+Columns: `live`, `sort`, `player`, `year`, `set`, `grade`, `ebay_url`, `photo_filename`, `notes`. An optional `price` column is used for Today's highlight only when it contains a real listing price.
+
+Photo folder: [Highlighted Cards](https://drive.google.com/drive/folders/1F_tNA7lW-RbFVaTyFaTanQOmER0eRxTt).
+
+The site fetches the sheet as CSV. **No eBay API key is used.** Share the tracker (and the photo folder, if you want photos to render) as **Anyone with the link → Viewer** in Google Drive so Vercel can read it. Do not paste listing URLs in chat — put them in `ebay_url` on the sheet. Do not create eBay listings from this repo.
 
 ## Future ideas (your “Blockbuster walk-through” vision)
 

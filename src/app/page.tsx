@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ExternalLink, Radio, MapPin, ShoppingBag, Sparkles } from "lucide-react";
 import { siteConfig, siteHandles } from "@/lib/data";
 import LaneGrid from "@/components/LaneGrid";
+import DailyHighlight from "@/components/DailyHighlight";
+
+export const revalidate = 3600;
 
 export default function HomePage() {
   return (
@@ -100,34 +103,40 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mb-2 flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-[var(--neon-magenta)]" />
-          <span className="label-90s !text-[var(--neon-magenta)]">Higher End</span>
-        </div>
-        <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl">
-          Grails
-        </h2>
-        <p className="mt-3 max-w-xl text-sm text-zinc-500 sm:text-base">
-          Serious cards. Cleaner presentation. The ones that make you pause.
-          Live grails list on eBay — we don&apos;t park made-up prices on this
-          site.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/grails"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--neon-magenta)]/30 bg-[var(--neon-magenta)]/10 px-5 py-3 text-sm font-semibold text-[var(--neon-magenta)] transition hover:bg-[var(--neon-magenta)]/20"
-          >
-            View all grails →
-          </Link>
-          <a
-            href={siteConfig.ebay}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.05]"
-          >
-            eBay store
-            <ExternalLink className="h-4 w-4 opacity-70" />
-          </a>
+        <DailyHighlight />
+      </section>
+
+      <section className="border-t border-white/[0.06]">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="mb-2 flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-[var(--neon-magenta)]" />
+            <span className="label-90s !text-[var(--neon-magenta)]">Higher End</span>
+          </div>
+          <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl">
+            Grails
+          </h2>
+          <p className="mt-3 max-w-xl text-sm text-zinc-500 sm:text-base">
+            Serious cards. Cleaner presentation. The ones that make you pause.
+            Live grails list on eBay — we don&apos;t park made-up prices on this
+            site.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/grails"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--neon-magenta)]/30 bg-[var(--neon-magenta)]/10 px-5 py-3 text-sm font-semibold text-[var(--neon-magenta)] transition hover:bg-[var(--neon-magenta)]/20"
+            >
+              View all grails →
+            </Link>
+            <a
+              href={siteConfig.ebay}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.05]"
+            >
+              eBay store
+              <ExternalLink className="h-4 w-4 opacity-70" />
+            </a>
+          </div>
         </div>
       </section>
 
